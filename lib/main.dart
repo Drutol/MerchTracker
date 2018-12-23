@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:merch_tracker/dataLoader.dart';
 import 'package:merch_tracker/models/merchItem.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:merch_tracker/views/merchWidget.dart';
 
 void main() => runApp(MyApp());
@@ -11,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MerchTracker',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Merch Tracker'),
     );
   }
 }
@@ -35,7 +34,13 @@ class _MyHomePageState extends State<MyHomePage> {
   DataLoader _dataLoader = DataLoader();
   List<MerchItem> _merchItems = List();
 
-  void _refreshList() async {
+  @override
+  void initState() {
+    super.initState();
+    _refreshList();
+  }
+
+  Future _refreshList() async {
     var items = await _dataLoader.getMerch();
     setState(() {
       _merchItems = items;
@@ -53,23 +58,32 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[_buildMerchList()],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _refreshList,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.looks_one), title: Text("Suruga-ya")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.looks_two), title: Text("Mandarake")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.looks_3), title: Text("Yahoo"))
+        ],
       ),
     );
   }
 
   Widget _buildMerchList() {
-    return ListView.builder(
-      itemCount: _merchItems.length,
-      itemBuilder: (context, i) {
-        if (i.isOdd) return Divider();
-        final index = i ~/ 2;
+    return RefreshIndicator(
+        onRefresh: _refreshList,
+        child: ListView.builder(
+          padding: EdgeInsets.only(top: 10),
+          itemCount: _merchItems.length,
+          itemBuilder: (context, i) {
+            if (i.isOdd) return Divider();
+            final index = i ~/ 2;
 
-        return MerchWidget(_merchItems[index]);
-      },
-    );
+            return MerchWidget(_merchItems[index]);
+          },
+        ));
   }
 }
