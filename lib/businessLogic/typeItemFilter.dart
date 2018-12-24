@@ -14,5 +14,7 @@ class TypeItemFilter implements ItemFilter {
     if (item.type?.isNotEmpty ?? false) {
       return _filteredKeyWords.any((keyword) => item.type.contains(keyword));
     }
+
+    return false;
   }
 }

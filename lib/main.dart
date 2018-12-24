@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:merch_tracker/dataLoader.dart';
-import 'package:merch_tracker/models/merchItem.dart';
-import 'package:merch_tracker/views/merchWidget.dart';
+import 'package:merch_tracker/models/trackedSitesEnum.dart';
+import 'package:merch_tracker/views/pages/mandarakePage.dart';
+import 'package:merch_tracker/views/pages/surugayaPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,22 +29,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  var _currentPage;
 
-  DataLoader _dataLoader = DataLoader();
-  List<MerchItem> _merchItems = List();
+  set currentPage(TrackedSite site) {
+    _currentPage = site;
+    _currentPageWidget = _pages[site];
+  }
+
+  var _currentPageWidget;
+  var _pages = {
+    TrackedSite.Surugaya: SurugayaPage(),
+    TrackedSite.Mandarake: MandarakePage(),
+    TrackedSite.Yahoo: SurugayaPage(),
+  };
 
   @override
   void initState() {
+    currentPage = TrackedSite.Surugaya;
     super.initState();
-    _refreshList();
-  }
-
-  Future _refreshList() async {
-    var items = await _dataLoader.getMerch();
-    setState(() {
-      _merchItems = items;
-    });
   }
 
   @override
@@ -55,11 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         child: Stack(
-          children: <Widget>[_buildMerchList()],
+          children: <Widget>[_currentPageWidget],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: _currentPage.index,
+        onTap: _onTabTapped,
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.looks_one), title: Text("Suruga-ya")),
@@ -72,18 +75,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildMerchList() {
-    return RefreshIndicator(
-        onRefresh: _refreshList,
-        child: ListView.builder(
-          padding: EdgeInsets.only(top: 10),
-          itemCount: _merchItems.length,
-          itemBuilder: (context, i) {
-            if (i.isOdd) return Divider();
-            final index = i ~/ 2;
-
-            return MerchWidget(_merchItems[index]);
-          },
-        ));
+  void _onTabTapped(int value) {
+    setState(() {
+      currentPage = TrackedSite.values[value];
+    });
   }
 }

@@ -16,14 +16,24 @@ class SurugayaCrawler implements SiteCrawler {
     var output = new List<MerchItem>();
 
     for (var htmlItem in items) {
-      var merchItem = new MerchItem();
-      merchItem.name = htmlItem.getElementsByClassName("title").first.text;
-      merchItem.imageUrl = htmlItem.querySelector("img").attributes["src"];
-      merchItem.type = htmlItem.getElementsByClassName("condition").first.nodes[1].text.replaceAll("|", "").trim();
-      merchItem.price = int.parse(htmlItem.getElementsByClassName("price").first.firstChild.text.replaceAll(new RegExp("￥|,"), "").trim());
-      output.add(merchItem);
+      output.add(MerchItem(
+          name: htmlItem.getElementsByClassName("title").first.text,
+          imageUrl: htmlItem.querySelector("img").attributes["src"],
+          type: htmlItem
+              .getElementsByClassName("condition")
+              .first
+              .nodes[1]
+              .text
+              .replaceAll("|", "")
+              .trim(),
+          price: int.parse(htmlItem
+              .getElementsByClassName("price")
+              .first
+              .firstChild
+              .text
+              .replaceAll(new RegExp("￥|,"), "")
+              .trim())));
     }
-
     return output;
   }
 }

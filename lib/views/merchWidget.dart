@@ -62,17 +62,7 @@ class _MerchWidgetState extends State<MerchWidget> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                child: Container(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      _item.type,
-                      style: TextStyle(
-                          fontStyle: FontStyle.italic,
-                          fontWeight: FontWeight.bold),
-                    )),
-                flex: 0,
-              ),
+              _buildTypeSection(),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(top: 5, bottom: 5),
@@ -84,7 +74,7 @@ class _MerchWidgetState extends State<MerchWidget> {
               ),
               Expanded(
                 child: Container(
-                    alignment: Alignment(1, 0),
+                    alignment: Alignment.centerRight,
                     child: Container(
                         padding: EdgeInsets.all(5),
                         decoration: BoxDecoration(
@@ -101,5 +91,21 @@ class _MerchWidgetState extends State<MerchWidget> {
         ))
       ],
     ));
+  }
+
+  _buildTypeSection() {
+    if(_item.type == null)
+      return Container(height: 0);
+
+    return Expanded(
+      child: Container(
+          alignment: Alignment.topLeft,
+          child: Text(
+            _item.type,
+            style: TextStyle(
+                fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+          )),
+      flex: 0,
+    );
   }
 }
