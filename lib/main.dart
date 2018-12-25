@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:merch_tracker/models/trackedSitesEnum.dart';
 import 'package:merch_tracker/views/pages/mandarakePage.dart';
 import 'package:merch_tracker/views/pages/surugayaPage.dart';
+import 'package:merch_tracker/views/pages/yahooPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var _pages = {
     TrackedSite.Surugaya: SurugayaPage(),
     TrackedSite.Mandarake: MandarakePage(),
-    TrackedSite.Yahoo: SurugayaPage(),
+    TrackedSite.Yahoo: YahooPage(),
   };
 
   @override

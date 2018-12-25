@@ -1,6 +1,7 @@
 import 'package:merch_tracker/businessLogic/typeItemFilter.dart';
 import 'package:merch_tracker/crawlers/mandarakeCrawler.dart';
 import 'package:merch_tracker/crawlers/surugayaCrawler.dart';
+import 'package:merch_tracker/crawlers/yahooCrawler.dart';
 import 'package:merch_tracker/interfaces/itemFilter.dart';
 import 'package:merch_tracker/interfaces/siteCrawler.dart';
 import 'package:merch_tracker/models/merchItem.dart';
@@ -19,7 +20,7 @@ class DataLoader {
         _crawler = MandarakeCrawler();
         break;
       case TrackedSite.Yahoo:
-        _crawler = SurugayaCrawler();
+        _crawler = YahooCrawler();
         break;
       default:
     }
