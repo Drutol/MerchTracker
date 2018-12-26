@@ -7,10 +7,10 @@ import 'package:merch_tracker/models/yahooMerchItem.dart';
 
 class YahooCrawler implements SiteCrawler {
   static const String _endpointTapestry =
-      "https://www.fromjapan.co.jp/sites/yahooauction/search?exhibitType=0&condition=0&keyword=蒼の彼方　タペストリ&category=All&_=1545657263795";
+      "https://www.fromjapan.co.jp/sites/yahooauction/search?exhibitType=0&condition=0&hits=40&keyword=蒼の彼方　タペストリ&sort=end&category=All&_=1545657263795";
 
   static const String _endpointDakis =
-      "https://www.fromjapan.co.jp/sites/yahooauction/search?exhibitType=0&condition=0&keyword=蒼の彼方　抱き枕&category=All&_=1545657263795";
+      "https://www.fromjapan.co.jp/sites/yahooauction/search?exhibitType=0&condition=0&hits=40&keyword=蒼の彼方　抱き枕&sort=end&category=All&_=1545657263795";
 
   @override
   Future<List<MerchItem>> getMerch() async {
