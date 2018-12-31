@@ -22,6 +22,8 @@ class MandarakeCrawler implements SiteCrawler {
         var item = MerchItem(
             name: block.getElementsByClassName("title").first.text.trim(),
             imageUrl: block.querySelector("img").attributes["src"],
+            link: "https://order.mandarake.co.jp" +
+                block.querySelector("a").attributes["href"],
             price: (int.parse(block
                         .getElementsByClassName("price")
                         .first
@@ -32,8 +34,12 @@ class MandarakeCrawler implements SiteCrawler {
                         .trim()) *
                     1.08)
                 .round());
-        if(item.imageUrl.contains("r18.png"))
-          item.imageUrl = block.getElementsByClassName("r18item").first.querySelector("img").attributes["src"];
+        if (item.imageUrl.contains("r18.png"))
+          item.imageUrl = block
+              .getElementsByClassName("r18item")
+              .first
+              .querySelector("img")
+              .attributes["src"];
 
         output.add(item);
       } catch (e) {

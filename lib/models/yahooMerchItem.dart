@@ -16,10 +16,12 @@ class YahooMerchItem extends MerchItem {
       String name,
       int price,
       String imageUrl,
-      String type}) {
+      String type,
+      String link}) {
     this.name = name;
     this.price = price;
     this.imageUrl = imageUrl;
     this.type = type;
+    this.link = link;
   }
 }

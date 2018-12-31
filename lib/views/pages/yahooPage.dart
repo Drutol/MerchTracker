@@ -32,13 +32,17 @@ class _YahooPageState extends MerchPageState<YahooPage>
             children: <Widget>[
               Expanded(
                   child: Container(
-                    color: Colors.blue,
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        boxShadow: [BoxShadow(blurRadius: 4)]),
                     child: TabBar(
                       indicatorColor: Colors.white,
                       controller: _controller,
                       tabs: <Widget>[
-                        Tab(icon: Icon(Icons.panorama_horizontal)),
-                        Tab(icon: Icon(Icons.favorite_border))
+                        Tab(
+                            text: "Tapestries",
+                            icon: Icon(Icons.panorama_horizontal)),
+                        Tab(text: "Dakis", icon: Icon(Icons.favorite_border))
                       ],
                     ),
                   ),
@@ -47,10 +51,12 @@ class _YahooPageState extends MerchPageState<YahooPage>
                   child: TabBarView(
                     controller: _controller,
                     children: <Widget>[
-                      buildMerchList(widget.merchItems.cast<YahooMerchItem>()
+                      buildMerchList(widget.merchItems
+                          .cast<YahooMerchItem>()
                           .where((item) => item.kind == YahooItemKind.Tapestry)
                           .toList()),
-                      buildMerchList(widget.merchItems.cast<YahooMerchItem>()
+                      buildMerchList(widget.merchItems
+                          .cast<YahooMerchItem>()
                           .where((item) => item.kind == YahooItemKind.Daki)
                           .toList())
                     ],

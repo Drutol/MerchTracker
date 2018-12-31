@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        elevation: _currentPage == TrackedSite.Yahoo ? 0 : 4,
       ),
       body: Container(
         child: Stack(

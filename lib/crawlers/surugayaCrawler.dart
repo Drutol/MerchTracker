@@ -19,6 +19,7 @@ class SurugayaCrawler implements SiteCrawler {
       output.add(MerchItem(
           name: htmlItem.getElementsByClassName("title").first.text,
           imageUrl: htmlItem.querySelector("img").attributes["src"],
+          link: htmlItem.querySelector("a").attributes["href"],
           type: htmlItem
               .getElementsByClassName("condition")
               .first

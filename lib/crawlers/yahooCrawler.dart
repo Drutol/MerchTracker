@@ -35,6 +35,7 @@ class YahooCrawler implements SiteCrawler {
             bidsCount: item.bids,
             buyoutPrice: item.buyItNowPrice,
             finishDate: DateTime.parse(item.endTime.replaceAll("/", "")),
+            link: "https://zenmarket.jp/auction.aspx?itemCode=${item.id}",
             kind: kind))
         .toList();
   }
