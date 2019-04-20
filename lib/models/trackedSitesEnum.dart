@@ -1,1 +1,1 @@
-enum TrackedSite { Surugaya, Mandarake, Yahoo }
+enum TrackedSite { Surugaya, Mandarake, Yahoo, Mercari }

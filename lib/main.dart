@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:merch_tracker/models/trackedSitesEnum.dart';
 import 'package:merch_tracker/views/pages/mandarakePage.dart';
+import 'package:merch_tracker/views/pages/mercariPage.dart';
 import 'package:merch_tracker/views/pages/surugayaPage.dart';
 import 'package:merch_tracker/views/pages/yahooPage.dart';
 
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var _currentPageWidget;
   var _pages = {
     TrackedSite.Surugaya: SurugayaPage(),
-    TrackedSite.Mandarake: MandarakePage(),
+    TrackedSite.Mandarake: MercariPage(),
     TrackedSite.Yahoo: YahooPage(),
   };
 
@@ -69,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.looks_one), title: Text("Suruga-ya")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.looks_two), title: Text("Mandarake")),
+              icon: Icon(Icons.looks_two), title: Text("Mercari")),
           BottomNavigationBarItem(
               icon: Icon(Icons.looks_3), title: Text("Yahoo"))
         ],

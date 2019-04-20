@@ -1,5 +1,6 @@
 import 'package:merch_tracker/businessLogic/typeItemFilter.dart';
 import 'package:merch_tracker/crawlers/mandarakeCrawler.dart';
+import 'package:merch_tracker/crawlers/mercariCrawler.dart';
 import 'package:merch_tracker/crawlers/surugayaCrawler.dart';
 import 'package:merch_tracker/crawlers/yahooCrawler.dart';
 import 'package:merch_tracker/interfaces/itemFilter.dart';
@@ -21,6 +22,9 @@ class DataLoader {
         break;
       case TrackedSite.Yahoo:
         _crawler = YahooCrawler();
+        break;
+      case TrackedSite.Mercari:
+        _crawler = MercariCrawler();
         break;
       default:
     }

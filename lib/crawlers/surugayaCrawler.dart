@@ -23,14 +23,11 @@ class SurugayaCrawler implements SiteCrawler {
           type: htmlItem
               .getElementsByClassName("condition")
               .first
-              .nodes[1]
               .text
               .replaceAll("|", "")
               .trim(),
           price: int.parse(htmlItem
-              .getElementsByClassName("price")
-              .first
-              .firstChild
+              .querySelector("strong")
               .text
               .replaceAll(new RegExp("￥|,"), "")
               .trim())));
