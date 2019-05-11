@@ -5,7 +5,7 @@ import 'package:html/parser.dart' show parse;
 
 class MandarakeCrawler implements SiteCrawler {
   static const String _endpoint =
-      "https://order.mandarake.co.jp/order/listPage/list?keyword=蒼の彼方のフォーリズム";
+      "https://order.mandarake.co.jp/order/listPage/list?soldOut=1&keyword=蒼の彼方のフォーリズム";
 
   @override
   Future<List<MerchItem>> getMerch() async {

@@ -41,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var _currentPageWidget;
   var _pages = {
     TrackedSite.Surugaya: SurugayaPage(),
-    TrackedSite.Mandarake: MercariPage(),
+    TrackedSite.Mercari: MercariPage(),
+    TrackedSite.Mandarake: MandarakePage(),
     TrackedSite.Yahoo: YahooPage(),
   };
 
@@ -64,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _currentPage.index,
         onTap: _onTabTapped,
         items: [
@@ -72,7 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.looks_two), title: Text("Mercari")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.looks_3), title: Text("Yahoo"))
+              icon: Icon(Icons.looks_3), title: Text("Mandarake")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.looks_4), title: Text("Yahoo"))
         ],
       ),
     );

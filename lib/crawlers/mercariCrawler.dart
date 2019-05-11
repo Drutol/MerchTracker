@@ -5,7 +5,7 @@ import '../interfaces/siteCrawler.dart';
 
 class MercariCrawler implements SiteCrawler {
   static const String _endpoint =
-      "https://www.mercari.com/jp/search/?keyword=蒼の彼方　タペストリ";
+      "https://www.mercari.com/jp/search/?sort_order=&keyword=蒼の彼方　タペストリ&category_root=&brand_name=&brand_id=&size_group=&price_min=&price_max=&status_on_sale=1";
 
   @override
   Future<List<MerchItem>> getMerch() async {

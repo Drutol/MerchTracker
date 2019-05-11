@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:merch_tracker/dataLoader.dart';
-import 'package:merch_tracker/models/merchItem.dart';
 import 'package:merch_tracker/models/trackedSitesEnum.dart';
 import 'package:merch_tracker/views/merchWidget.dart';
 import 'package:merch_tracker/views/pages/base/merchPageState.dart';
