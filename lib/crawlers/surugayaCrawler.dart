@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:merch_tracker/models/merchItem.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' show parse;
+import 'dart:convert' show utf8;
 import '../interfaces/siteCrawler.dart';
 
 class SurugayaCrawler implements SiteCrawler {
@@ -11,7 +14,8 @@ class SurugayaCrawler implements SiteCrawler {
   Future<List<MerchItem>> getMerch() async {
     var html = await http.get(_endpoint, headers: {"cookie": "adult=1"});
 
-    var document = parse(html.body);
+  
+    var document = parse(utf8.decode(html.bodyBytes, allowMalformed: true));
     var items = document.getElementsByClassName("item");
     var output = new List<MerchItem>();
 
